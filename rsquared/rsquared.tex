@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+	\section*{Definition}
+	\begin{align}
+		R^2 & = \frac{SSE}{SST} \\ \nonumber
+			& = \frac{\sum_i(\hat{Y}_i - \bar{Y})^2}%
+					{\sum_i(Y_i - \bar{Y})^2}
+	\end{align}
+
+	\section*{Univariate Regression}
+	Let the univariate regression model be: $Y=X\beta + \epsilon$. 
+	We can estimate $\beta$ with 
+	$\hat{\beta} = \frac{\widehat{Cov(X,Y)}}{\widehat{Var(X)}}$
+	with ordinary least squares or maximum likelihood. Hence, our
+	predicted value of $Y_i$ is $\hat{Y}_i = X\hat{\beta}$. Then, we can
+	rewrite the $R^2$ as follows:
+
+	\begin{align}
+		R^2 & = \frac{\sum_i(\hat{Y}_i - \bar{Y})^2}%
+					{\sum_i(Y_i - \bar{Y})^2} \\ \nonumber
+			& = \frac{\sum_i(X_i\hat{\beta} - \bar{Y})^2}%
+					{\sum_i(Y_i - \bar{Y})^2} \\ \nonumber
+	\end{align}
+
+	And, by construction of the OLS estimate, $\sum_i\hat{\epsilon}_i = 0$
+	and therefore
+	$\bar{Y} = \frac{1}{n}\sum_iY_i = \frac{1}{n}\sum_i(\hat{Y}_i + \hat{\epsilon})%
+	= \frac{1}{n}\sum_i\hat{Y}_i = \frac{1}{n}\sum_iX_i\hat{\beta}$. Thus, 
+
+	\begin{align}
+		R^2 & = \frac{\sum_i(X_i\hat{\beta} - \frac{1}{n}\sum_iX_i\hat{\beta})^2}%
+					{\sum_i(Y_i - \bar{Y})^2} \\ \nonumber
+			& = \hat{\beta}^2\frac{\sum_i(X_i - \bar{X})^2}%
+					{\sum_i(Y_i - \bar{Y})^2} \\ \nonumber
+			& = \hat{\beta}^2\frac{\widehat{Var(X)}}{\widehat{Var(Y)}} \\ \nonumber
+			& = \hat{\beta}\frac{\widehat{Cov(X,Y)}}{\widehat{Var(Y)}} \\ \nonumber
+			& = \hat{\beta}\widehat{Cov(X,Y)}\widehat{Corr(X,Y)}
+	\end{align}
+\end{document}
