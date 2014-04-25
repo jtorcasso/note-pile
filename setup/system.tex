@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\hypersetup{linkcolor=blue,colorlinks=true,citecolor=blue,urlcolor=blue}
+
+\newcommand{\inlineterminal}[1]{\colorbox{black}{\lstinline[basicstyle=\ttfamily\color{white}]|#1|}}
+
+\begin{document}
+	\begin{enumerate}
+		\item Fill out application materials
+		\item Install software
+		\begin{itemize}
+			\item Python (2.7.5+)
+			\item \href{http://cran.cnr.berkeley.edu/}{R}
+			\item \hyperref[sec:pypackage]{Python Packages}: Pandas, Statsmodels, Matplotlib, Sphinx, 
+			IPython and IPython Notebook, PyTabular, Rpy2
+			\item \hyperref[sec:stata]{STATA}
+			\item \href{http://latex-project.org/ftp.html}{LateX}
+			\item \href{http://www.sublimetext.com/2}{Sublime-text 2}
+			\begin{itemize}
+				\item Install package manager
+				\item Install LatexTools package
+			\end{itemize}
+			\item \href{http://git-scm.com/book/en/Getting-Started-Installing-Git}{Git}
+		\end{itemize}
+		\item Learn/configure software
+		\begin{itemize}
+			\item Learn the sublime-text shortcuts
+			\item Configure Git, check out my introduction
+			and other resources I give links to \href{http://jaketorcasso.com/presentations/main.pdf}{here}.
+			\item You will learn Git, Python and LateX as you go, but try
+			to get the very basics to work for each.
+		\end{itemize}
+		\item Sign-up for \href{http://asana.com/}{Asana}, a task management
+		system.
+		\item Synchronize file structure
+		\begin{enumerate}
+			\item Create folder ``erc'' anywhere (e.g. in Documents/) on computer
+			\item Within this folder create folders ``data'' and ``ercprojects''
+			\item Create a folder ``klmshare'' anywhere on your computer. You
+			will map this directory to one in klmshare in a future step.
+		\end{enumerate}
+		\item Configure Environment variables
+		\begin{itemize}
+			\item Point ``\texttt{erc}'' to ``\texttt{.../erc/}''
+			\item Point ``\texttt{klmshare}'' to ``\texttt{.../klmshare/}''. You 
+			will map this folder to the one on athens in another step
+		\end{itemize}
+		\item Gain permissions to data
+		\begin{itemize}
+			\item \hyperref[sec:athens]{Athens} access
+			\item \hyperref[sec:repoaccess]{Project repositories}
+			\item \hyperref[sec:dataacess]{Project datasets} (HSIS, ECLS-B, Perry, ABC, NLSY Geocode)
+		\end{itemize}
+		\item Map network drives to \hyperref[sec:klmmap]{klmshare directory} (on athens)
+		\item Clone project repositories
+		\begin{itemize}
+			\item \hyperref[sec:clonehsis]{Clone HSIS data} into 
+			\texttt{.../erc/data}
+			\item \hyperref[sec:cloneredmine]{Clone HSIS project} into
+			\texttt{.../erc/ercprojects}
+			\item \hyperref[sec:cloneredmine]{Clone CNLSY data} into 
+			\texttt{.../erc/data/}
+		\end{itemize}
+		\item \hyperref[sec:vpn]{Configure VPN} so that you may work from anywhere
+	\end{enumerate}
+
+	\clearpage
+
+	\section*{References}
+
+	\subsection*{Athens Access} \label{sec:athens}
+	Consult Marie (\texttt{jjh.coordinator@gmail.com}) about getting access to Athens. 
+
+	\subsection*{Project Repositories} \label{sec:repoaccess}
+	The project repositories are located in a special server we setup with
+	SSCS. To obtain access, do the following:
+
+	\begin{enumerate}
+		\item Send me your CNET ID
+		\item Wait for an email from me, then sign into 
+		\url{https://klondike.uchicago.edu} using your CNET ID and SSCS
+		password.
+		\item Then send me an email when you have done so.
+		\item Then I will add you to the correct projects and you will
+		be able to clone these repositories.
+	\end{enumerate}
+
+	\subsection*{Project Datasets} \label{sec:dataacess}
+	We require you to sign agreements in order to gain access to data.
+	Please consult Josh (\texttt{jjh.datamanager@gmail.com}) on 
+	getting the paperwork filled out to use these datasets. You might
+	not need to fill out anything to use some of them.
+
+	\subsection*{Installing Python Packages} \label{sec:pypackage}
+	Installation will depend on your platform. But you should know how
+	to install in different ways:
+
+	\begin{itemize}
+		\item \href{http://pythonhosted.org//setuptools/easy_install.html#downloading-and-installing-a-package}{easy install}
+		\item \href{http://www.pip-installer.org/en/latest/installing.html}{Pip}
+		\item Installing from source: download the tarball or zipped package
+		contents, then extract the files and run the setup.py file as shown
+		\href{https://docs.python.org/2/install/index.html#platform-variations}{here}
+	\end{itemize}
+
+	\subsection*{Installing STATA} \label{sec:stata}
+	The ERC buys copies of STATA. You can follow find it in 
+	\texttt{Klmshare/Stata[Version]}. Contact Marie (\texttt{jjh.coordinator@gmail.com}) for a serial number to complete installation.
+
+	\subsection*{Cloning Repositories} \label{sec:cloneredmine}
+	Cloning repositories from the redmine server (the special server we have
+	for projects) is easy once you have Git installed. Just enter the following
+	in terminal: 
+
+	\vspace{0.5cm}
+
+	\begin{raggedright}
+	\newbox{\mybox}
+	\begin{lrbox}{\mybox}
+	\begin{minipage}{\linewidth}
+	\begin{lstlisting}[basicstyle=\small\ttfamily\color{white}]
+$ git clone https://[SSCS_Username]@klondike.uchicago.edu/
+git/[Project_Name]
+	\end{lstlisting}
+	\end{minipage}
+	\end{lrbox}
+	\colorbox{black}{\usebox{\mybox}}
+		
+	\end{raggedright}
+
+	\vspace{0.5cm}
+	\noindent But remember to substitute for your own [SSCS\_Username] and [Project\_Name]. 
+
+	\subsection*{Configure VPN} \label{sec:vpn}
+	Please visit \url{https://cvpn.uchicago.edu/} and login with your CNET ID and
+	password. Then download the University's VPN software. Once installed, you can
+	``VPN in'' by doing the following:
+
+	\begin{enumerate}
+		\item In \texttt{Connect to:} put \texttt{cvpn.uchicago.edu}, then provide
+		your CNET ID and Password.
+	\end{enumerate}
+
+	\subsection*{Cloning HSIS data do-files} \label{sec:clonehsis}
+	The do-files that construct the HSIS data are located on Athens. They are 
+	under version control. The preferred method to modify these files is
+	to clone the repository and then submit a pull request to me to incorporate
+	your changes. To clone the repository, issue the following commands in
+	terminal:
+
+	\vspace{0.5cm}
+	\noindent \inlineterminal{\$ cd \$erc/data}
+
+	\vspace{0.5cm}
+	\begin{raggedright}
+	\newbox{\mybox}
+	\begin{lrbox}{\mybox}
+	\begin{minipage}{\linewidth}
+	\begin{lstlisting}[basicstyle=\small\ttfamily\color{white}]
+$ git clone ssh://[SSCS_Username]@athensx.uchicago.edu/
+mnt/ide0/share/klmshare/Data_Central/HSIS/dofiles   HSIS
+	\end{lstlisting}
+	\end{minipage}
+	\end{lrbox}
+	\colorbox{black}{\usebox{\mybox}}
+		
+	\end{raggedright}
+
+	\vspace{0.5cm}
+	\noindent But remember to substitute for your own [SSCS\_Username]
+
+	\subsection*{Mounting to Klmshare} \label{sec:klmmap}
+	To mount to klmshare please seek guidance for your particular platform.
+	Ask me for guidance on mounting if you use Ubuntu. You should create a
+	directory called ``klmshare'' somewhere on your computer and map it to
+	\texttt{//128.135.47.237/klmshare}
+\end{document}
