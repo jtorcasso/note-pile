@@ -1,0 +1,90 @@
+\documentclass{article}
+
+\begin{document}
+	\section*{Motivation}
+	Markov Chain Monte Carlo (MCMC) methods allow us to do the following. Let $X$ be
+	distributed according to some \emph{complicated} probability distribution
+	$P$: $X \sim P$. With MCMC we can both sample from $P$ or approximate
+	an expectation of a function $f(X)$. 
+
+	\section*{The Markov Chain (for Discrete State Spaces)}
+	The Markov Chain (MC) is a sequence of draws $X_0, X_1, ..., X_n$ for which
+	each successive draw depends on the former, i.e. 
+	$X_0 \rightarrow X_1, ..., \rightarrow X_n$. 
+	In other words, the sequence of draws satisfies the Markov Property:
+
+	\begin{equation}
+		Pr(X_t|X_0,...,X_{t-1}) = Pr(X_t|X_{t-1})
+	\end{equation}
+
+	\noindent, or equivalently:
+
+	\begin{equation}
+		Pr(X_0,...,X_n) = Pr(X_0)Pr(X_1|X_0) \times ... \times Pr(X_n|X_{n-1})
+	\end{equation}
+
+	\noindent, where each $X_t \in \mathcal{X}$, where $\mathcal{X}$ is some
+	countable set. 
+
+	\section*{Ergodic Theorem for Discrete State-Space Markov Chains}
+	If ($X_0,X_1,...,X_n$) is an \textbf{irreducible}, \textbf{time-homogenous} 
+	discrete MC with \textbf{stationary distribution} $\pi$, then:
+
+	\begin{equation}
+	 	\frac{1}{n}\sum_{i=1}^nf(X_i) \rightarrow E[f(X)]
+	 \end{equation}
+
+	 \noindent, where $X \sim \pi$ for any bounded function 
+	 $f:\mathcal{X} \rightarrow \mathcal{R}$. If, further, the MC is 
+	 \textbf{aperiodic}, then 
+	 $Pr(X_n=x|X_0=x_0) \rightarrow \pi(x)$, $\forall x,x_0 \in \mathcal{X}$.
+
+	 \section*{Detailed Balance (Reversibility)}
+
+	 A pmf $\pi$ satisfies detailed balance w.r.t $T$ if 
+	 $\pi_aT_{ab}=\pi_bT_{ba}$ $\forall a,b \in \mathcal{X}$. 
+
+	 \begin{description}
+	 	\item[Remark 1] Detailed balance implies $\pi$ is a stationary
+	 	distribution for any MC with transition matrix $T$. 
+
+	 	\item[Remark 2] A MC is \emph{reversible}, if the pmf and 
+	 	transition matrix satisfy detailed balance. That is, if
+	 	we have detailed balance, then $(X_0,...,X_n) \sim$ 
+	 	$MC(\pi,T)$ implies $(X_n,...,X_0 \sim$ $MC(\pi,T)$.
+	 \end{description}
+
+	 \subsection*{Intuition}
+	 $\pi_aT_{ab}=\pi_bT_{ba}$
+
+	 Left side is the ``mass'' moving from $a$ to $b$ and the right
+	 side is the ``mass'' moving from $b$ to $a$. Thus if $\pi$ 
+	 satisfies detailed balance it is a stationary distribution.
+
+
+	\section*{Glossary}
+	
+	\begin{description}
+		\item[time-homogeneous] A MC ($X_i$) is time-homogeneous if 
+		$Pr(X_{i+1}=b|X_i=a) = T_{ab}$, $\forall a,b \in \mathcal{X}$
+		for some matrix T. Notice that $T_{ab}$ does not depend on $i$. 
+		The rows of $T$ will sum to $1$ and every entry in the matrix is
+		positive. $T$ is the transition matrix.
+
+		\item[stationary distribution] A probability mass function (pmf) 
+		$\pi$ on $\mathcal{X}$ is a stationary or invariant distribution 
+		(w.r.t T) if $\pi T=\pi$, i.e. 
+		$\sum_{a \in \mathcal{X}}\pi_aT_{ab}=\pi_b$, $\forall b \in \mathcal{X}$.
+
+		\item[irreducible] A MC is irreducible if 
+		$\forall a,b \in \mathcal{X}$ $\exists t \geq 0$ such that 
+		$Pr(X_t=b|X_0=a) > 0$. 
+
+		\item[aperiodic] A MC ($X_i$) is aperiodic if 
+		$\forall a \in \mathcal{X}$, if the greatest common divisor
+		of the set $\{ t : Pr(X_t=a|X_0=a) > 0 \}$ is $1$, i.e. there
+		is no pattern in how the markov chain visits states.
+	\end{description}
+
+
+\end{document}

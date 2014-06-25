@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\title{Notes on Bayesian Estimation for Normal Linear Models
+		When the Model is Also A Random Variable}
+
+\author{Jake C. Torcasso}
+
+\begin{document}
+	\maketitle
+	\clearpage
+
+	\section{The Model}
+
+	\noindent Let the random variable $Y|X_m,M=m,\theta_m$, where $\theta_m=(\beta_m,\sigma_m)$, be distributed normally:
+
+	\begin{equation} \label{eq:model}
+		Y|X_m,M,\theta_m \sim \mathcal{N}(X_m\beta_m, \sigma_m^2)
+	\end{equation}
+
+	\noindent We seek the full posterior distribution of $\theta$, $Pr(\theta|Y,X)$, which can be
+	obtained after integrating over 
+	the discrete random variable $M$ (with support $\mathcal{M}$), 
+	whose realizations specify a particular model $m$.
+
+	\begin{equation} \label{eq:posterior}
+		\begin{aligned}
+			Pr(\theta|Y,X) & = \int_{\mathcal{M}} Pr(\theta_m|Y, X_m, M)Pr(M=m|Y,X) \\
+			               & = \sum_{m \in \mathcal{M}} Pr(\theta_m|Y, X_m, M)Pr(M=m|Y,X)
+		\end{aligned}
+	\end{equation}
+
+	\noindent, where $|\mathcal{M}|< \infty$ and $Pr(M=m|Y,X)$ is the posterior probability of model $m$.
+	We can obtain the posterior probability of any model $m$ as follows:
+
+	\begin{equation}
+		Pr(M=m|Y,X) = \frac{Pr(Y|X_m,M)Pr(M=m|X)}{\sum_{m' \in \mathcal{M}} Pr(Y|X_{m'},M=m')Pr(M = m'|X)}
+	\end{equation}
+
+	\noindent, where the likelihood, $Pr(Y|X_m,M)$, is an integral over the parameter space
+	$\Theta_m$:
+
+	\begin{equation} \label{eq:likelihood}
+		Pr(Y|X_m, M) = \int_{\Theta_m} Pr(Y|X_m, M, \theta_m)Pr(\theta_m|X_m,M)d\theta_m
+	\end{equation}
+
+	\noindent This \emph{integrated} likelihood can be high-dimensional and intractible. A commonly
+	taken approach is to use $Pr(Y|X_m,M) = exp(\frac{1}{2}BIC_m)$, where the Bayesian 
+	Information Criterion (BIC) is equal to $2logPr(Y|X_m,M)$. As shown in Raftery (1995) and 
+	Claeskens and Hort (2008), we can approximate the BIC as follows:
+
+	\begin{equation} \label{eq:bic}
+		\hat{BIC}_m = logPr(Y|X_m,M,\hat{\theta}_m) - \frac{|\theta_m|}{2}log(n)
+	\end{equation}
+
+	\noindent The approximation gets better as $n \rightarrow \infty$.  We can estimate all of the
+	components of \eqref{eq:bic}, including the maximized log likelihood (assuming normality as 
+	in equation \eqref{eq:model}):
+
+	\begin{equation}
+		\begin{aligned}
+			logPr(Y|X_m,M,\hat{\theta}_m) & = log\prod_{i=1}^n \phi_i(Y_i) \\
+			                              & = \sum_{i=1}^n log\phi_i(Y_i)
+		\end{aligned}
+	\end{equation}
+
+	\noindent, where each $\phi$ is a normal pdf with mean $X_{m,i}\hat{\beta}_m$ and 
+	variance $\hat{\sigma}_m^2$. These parameters are estimated as follows:
+
+	\begin{equation}
+		\begin{aligned}
+			\hat{\beta}_m & = \hat{\beta}_{m,MLE} = \hat{\beta}_{m,OLS} = (X_m'X_m)^{-1}X_m'Y \\
+			\hat{\sigma}_m^2 & = \hat{\sigma}_{m,MLE}^2 = \frac{1}{n}(Y - X_m\hat{\beta}_m)'(Y - X_m\hat{\beta}_m)
+		\end{aligned}		
+	\end{equation}
+
+	\noindent These estimators have the following distributions:
+	
+	\begin{equation}
+		\begin{aligned}
+			\hat{\beta}_m & \sim \mathcal{N}(\beta, \sigma_m^2(X_m'X_m)^{-1}) \\
+			\hat{\sigma}_m^2 & \sim \frac{\sigma_m^2}{n - |\beta_m|} \chi_{n-|\beta_m|}^2
+		\end{aligned}		
+	\end{equation}
+
+	\section{Forming the Posterior Distribution}
+\end{document}
