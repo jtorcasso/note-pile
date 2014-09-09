@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\hypersetup{linkcolor=blue,colorlinks=true,citecolor=blue,urlcolor=blue}
+
+\newcommand{\inlineterminal}[1]{\colorbox{black}{\lstinline[basicstyle=\ttfamily\color{white}]|#1|}}
+
+\begin{document}
+    \begin{enumerate}[itemsep=10pt,parsep=2pt]
+        \item Download vagrant
+        \item Download virtualbox
+        \item Download the box at \url{http://peisenha.blob.core.windows.net/share/cbAnalysis-recomputation.box}
+        \item Open terminal and cd into the directory of the downloaded box. If downloaded
+        into Downloads: \hfill \\ 
+
+        \inlineterminal{\$ cd Downloads}
+        \item Add the box \hfill \\
+
+        \inlineterminal{\$ vagrant box add recompute cbAnalysis-recomputation.box}
+        \item Initialize the vagrant environment \hfill \\
+
+        \inlineterminal{\$ vagrant init recompute}
+        \item Start the virtual machine \hfill \\
+
+        \inlineterminal{\$ vagrant up}
+        \item Connect to the virtual machine \hfill \\
+        
+        \inlineterminal{\$ vagrant ssh}
+        \item Now you are ``inside'' the virtual machine, at the terminal interface. From
+        here you can investigate the code used to generate the results. To recompute
+        results, we added a command. \hfill \\
+        
+        \inlineterminal{\$ cbAnalysis-recompute} \hfill \\
+
+        The computation will take a few minutes.
+        \item Check the results once computation is complete by checking
+        the \inlineterminal{rslt} folder.
+        \item Clean-up the results \hfill \\
+        
+        \inlineterminal{\$ cbAnalysis-clean}
+
+        \item Exit the virtual machine \hfill \\
+
+        \inlineterminal{\$ exit} \hfill \\
+
+        Now you are back to your machine.
+
+        \item You can destroy all traces of the virtual machine. \hfill \\
+
+        \inlineterminal{\$ vagrant destroy}
+    \end{enumerate}
+\end{document}
