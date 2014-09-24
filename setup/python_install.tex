@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{shapes,backgrounds,fit,decorations.pathreplacing}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+			urlcolor=blue,
+			citecolor=blue,
+			linkcolor=blue}
+\usepackage{natbib}
+\usepackage{listings}
+\usepackage{subfig}
+
+\newcommand{\inlinecode}[1]{%
+\colorbox{black}{\lstinline[basicstyle=\ttfamily\color{white}]|#1|}}
+
+\begin{document}
+	\section*{Installing Packages}
+	First, some general comments before installation. 
+
+	How does Python know where to look for Python modules? First it
+	looks in current directory (where the script was run), then it looks
+	in the Python standard library, then it looks in the directories
+	listed in your PYTHONPATH environment variable (which you may
+	have not set) and finally in those directories listed in your
+	PATH environment variable. So there's no magic involved. One
+	thing you have to be observant of is editors which may alter
+	these paths before execution. 
+
+	In general, remember that (usually) by default Python packages
+	are installed in directories that require administrator
+	privileges, which is why we prefix most of the install commands
+	with \inlinecode{sudo}. For all of the install commands below
+	you can provide additional command arguments to specify an
+	alternative install directory to the default.
+
+	Recall three methods to install Python packages:
+
+	\begin{enumerate}
+		\item Install using Pip. 
+
+		\inlinecode{\$ sudo pip install [package]}
+
+		And to upgrade the package.
+
+		\inlinecode{\$ sudo pip install --upgrade [package]}
+
+		\item Install using easy\_install
+
+		\inlinecode{\$ easy\_install [package]}
+
+		And to upgrade.
+
+		\inlinecode{\$ easy\_install --upgrade [package]}
+
+		\item Installing from source. Every package comes with a 
+		script you can run yourself for installation. So you can
+		download compressed folders containing all of the source
+		code and then run the installation script yourself. 
+
+		All you need to do to install from source is download
+		the files (uncompress if you need to) then run the setup
+		script included in these files. 
+
+		\inlinecode{\$ sudo setup.py install}
+		
+		The package will be installed into the directory where
+		your other packages reside. 
+
+		Sometimes
+		installation requires a C or Fortran compiler because there
+		is source code written in these languages which needs to be
+		compiled before you can use it. Numpy and Scipy
+		depend on optimized C and Fortran libraries that require
+		compilation. Pre-compiled binaries are sometimes available
+		online to make installation easy. I think they are usually
+		packaged as executables. But hopefully in the next step
+		you learn how to successfully install C and Fortran compilers
+		on your mac.
+
+
+		\section*{Need C and Fortran Compilers?}
+
+		On a mac, it appears you need to install Xcode in order
+		to install these compilers. Here is one 
+		\href{http://www.cyberciti.biz/faq/howto-apple-mac-os-x-install-gcc-compiler/}{link} 
+		on how to install gcc (the C compiler). It appears you should
+		be able to install gfortran (the Fortran compiler) in a similar
+		way, but this 
+		\href{http://gcc.gnu.org/wiki/GFortranBinariesMacOS}{link} 
+		provides resources on further details.
+
+
+	\end{enumerate}
+\end{document}
