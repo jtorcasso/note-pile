@@ -1,0 +1,23 @@
+Steps
+
+1. Download the compressed package files
+2. Run Latex on the .ins file.
+3. Copy the .cfg and .sty files and any files
+   with a .fd ending into a new directory in
+   your tex-inputs search path. 
+4. Then run texhash?
+
+Search Paths
+------------
+
+Search paths can be found with the following:
+
+    $ kpsepath tex | tr : '/n'
+
+An example might be:
+
+    $ /usr/share/texlive/texmf-dist/tex
+
+To install eurofont I put the install files
+inside a directory called "eurofont" which I
+created in the above parent directory.
